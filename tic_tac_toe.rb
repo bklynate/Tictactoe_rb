@@ -1,7 +1,7 @@
 # First Attempt At Tic Tac Toe
 require 'pry'
 
-def create_space
+def make_board
   board = {}
   (1..9).each{|space| board[space] = ' '}
   board
@@ -17,8 +17,8 @@ def human_choice(board)
   board[choice] = "X"
 end
 
-def is_space_empty(board)
-  board.select{|k,v| v == ' '}.keys
+def list_of_empty_spaces(board)
+  board.select{|_,v| v == ' '}.keys
 end
 
 def computer_choice(board)
@@ -26,14 +26,14 @@ def computer_choice(board)
   board[choice] = 'O'
 end
 
-def draw_board(s)
+def draw_board(board)
   system 'clear'
   prompt "\n"
-  prompt " #{s[1]}  | #{s[2]} | #{s[3]}"
+  prompt " #{board[1]}  | #{board[2]} | #{board[3]}"
   prompt "--------------"
-  prompt " #{s[4]}  | #{s[5]} | #{s[6]}"
+  prompt " #{board[4]}  | #{board[5]} | #{board[6]}"
   prompt "--------------"
-  prompt " #{s[7]}  | #{s[8]} | #{s[9]}"
+  prompt " #{board[7]}  | #{board[8]} | #{board[9]}"
   prompt "\n"
 end
 
@@ -46,7 +46,7 @@ def check_for_winner(board)
   nil
 end
 
-board = create_space
+board = make_board
 draw_board(board)
 
 begin
@@ -54,7 +54,7 @@ begin
   computer_choice(board)
   draw_board(board)
   winner = check_for_winner(board)
-end until winner || is_space_empty(board).empty?
+end until winner || list_of_empty_spaces(board).empty?
 
 if winner
   prompt winner
