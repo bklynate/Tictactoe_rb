@@ -2,9 +2,9 @@
 require 'pry'
 
 def create_space
-  s = {}
-  (1..9).each{|space| s[space] = ' '}
-  s
+  board = {}
+  (1..9).each{|space| board[space] = ' '}
+  board
 end
 
 def prompt(words)
@@ -61,9 +61,3 @@ if winner
 else
   prompt "It's a tie!"
 end
-
-
-
-
-
-
