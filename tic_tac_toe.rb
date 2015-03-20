@@ -22,7 +22,7 @@ def list_of_empty_spaces(board)
 end
 
 def computer_choice(board)
-  choice = is_space_empty(board).sample
+  choice = list_of_empty_spaces(board).sample
   board[choice] = 'O'
 end
 
